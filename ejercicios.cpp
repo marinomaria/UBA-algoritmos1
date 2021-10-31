@@ -74,7 +74,7 @@ void ordenarRegionYCODUSU (eph_h & th, eph_i & ti) {
 
 // Implementacion Problema 8
 vector <hogar> muestraHomogenea( eph_h &th, eph_i &ti ){
-    vector<hogar_con_ingresos> hogares_con_ingresos = {};
+    vector<hogar_con_ingresos> hogares_con_ingresos;
     for (hogar h: th) {
         int ingresos = ingresosDelHogar(ti, h);
 
@@ -91,7 +91,7 @@ vector <hogar> muestraHomogenea( eph_h &th, eph_i &ti ){
               });
 
     set<int> todas_las_diferencias = obtenerDiferenciasDeIngresosEntreHogares(hogares_con_ingresos);
-    vector<hogar_con_ingresos> subseq_mas_larga = {};
+    vector<hogar_con_ingresos> subseq_mas_larga;
     for (auto d: todas_las_diferencias) {
         vector<hogar_con_ingresos> s = subseqMasLargaDeHogaresPorDifDeIngresos(hogares_con_ingresos, d);
         if(s.size() > subseq_mas_larga.size()) {

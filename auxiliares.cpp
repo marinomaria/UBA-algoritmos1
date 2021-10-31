@@ -5,7 +5,7 @@
 
 
 vector<individuo> individuosDelHogar(eph_i &ti, hogar &h) {
-    vector<individuo> res = {};
+    vector<individuo> res;
     for (individuo i: ti) {
         if(i[ItemInd::INDCODUSU] == h[ItemHogar::HOGCODUSU]) {
             res.push_back(i);
@@ -29,7 +29,7 @@ int ingresosDelHogar(eph_i &ti, hogar &h) {
 vector<hogar_con_ingresos> subseqMasLargaDeHogaresPorDifDeIngresos(vector<hogar_con_ingresos> &hci, int d) {
     map<int, vector<hogar_con_ingresos>> m;
 
-    vector<hogar_con_ingresos> subseq_mas_larga = {};
+    vector<hogar_con_ingresos> subseq_mas_larga;
     for (int i = 0; i < hci.size() ; i++) {
         int diff = hci[i].second - d;
 
@@ -51,7 +51,7 @@ vector<hogar_con_ingresos> subseqMasLargaDeHogaresPorDifDeIngresos(vector<hogar_
 }
 
 set<int> obtenerDiferenciasDeIngresosEntreHogares(vector<hogar_con_ingresos> &hogares_con_ingresos) {
-    set<int> todas_las_diferencias = {};
+    set<int> todas_las_diferencias;
 
     // para cada hogar calculo la diferencia de ingresos con los otros hogares
     for (hogar_con_ingresos p1: hogares_con_ingresos) {
