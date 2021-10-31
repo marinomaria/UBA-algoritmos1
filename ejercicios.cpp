@@ -14,15 +14,15 @@ bool esEncuestaValida ( eph_h th, eph_i ti ) {
 
 // Implementacion Problema 2
 vector <int> histHabitacional ( eph_h th, eph_i ti, int region ) {
-	vector <int> res = {};
+	vector <int> res;
 
     for (hogar h: th) {
         bool es_casa = h[ItemHogar::IV1] == 1;
         if(es_casa && h[ItemHogar::REGION] == region) {
             int cant_hab = h[ItemHogar::IV2];
             if(res.size() < cant_hab) {
-                vector<int> filler(cant_hab-res.size(),0);
-                res.insert(res.end(), filler.begin(), filler.end());
+                vector<int> rellenador(cant_hab - res.size(), 0);
+                res.insert(res.end(), rellenador.begin(), rellenador.end());
             }
 
             res[cant_hab-1]++;
