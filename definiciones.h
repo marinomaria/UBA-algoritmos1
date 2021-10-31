@@ -8,6 +8,8 @@
 #include <iostream>
 #include <vector>
 #include <tuple>
+#include <algorithm>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -64,5 +66,7 @@ typedef vector < individuo >        eph_i;
 typedef vector < hogar >            eph_h;
 typedef pair < hogar, individuo >   par_hi;
 typedef vector < par_hi >           join_hi;
+typedef int                         ingresos;
+typedef pair<hogar, ingresos>       hogar_con_ingresos;
 
 #endif //UTILES_DEFINICIONES_H
