@@ -40,12 +40,12 @@ void ordenarTablaIndividuos(eph_i &ti, eph_h &th) {
     for (int i = 0; i < ti.size(); i++) {
         for (int j = ti.size() - 1; j > i; j--) {
             if (
-                    indiceEnTablaHogares(ti[j][HOGCODUSU], th) < indiceEnTablaHogares(ti[j - 1][HOGCODUSU], th) ||
+                    indiceEnTablaHogares(ti[j][INDCODUSU], th) < indiceEnTablaHogares(ti[j - 1][INDCODUSU], th) ||
                     (
-                            indiceEnTablaHogares(ti[j][HOGCODUSU], th) == indiceEnTablaHogares(ti[j - 1][HOGCODUSU], th) &&
+                            indiceEnTablaHogares(ti[j][INDCODUSU], th) == indiceEnTablaHogares(ti[j - 1][INDCODUSU], th) &&
                             ti[j][COMPONENTE] < ti[j - 1][COMPONENTE]
                     )
-                    )
+                )
             {
                 swap(ti[j], ti[j - 1]);
             }
