@@ -15,12 +15,9 @@ int cantHabitantes (hogar const &h, eph_i const &ti) {
 }
 
 bool esHogarTarget(hogar const &h, int r) {
-    if (h[REGION] == r && h[IV1] == CASA && h[MAS_500] == 0) {
-        return true;
-    } else {
-        return false;
-    }
+    return (h[REGION] == r && h[IV1] == CASA && h[MAS_500] == 0);
 }
+
 float cantCasasTargetConHC(eph_h const &th, eph_i const &ti, int r) {
     float total = 0.0;
     for (hogar h : th) {
