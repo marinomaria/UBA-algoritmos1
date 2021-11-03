@@ -90,7 +90,7 @@ vector <hogar> muestraHomogenea( eph_h &th, eph_i &ti ){
                   return a.second < b.second;
               });
 
-    set<int> todas_las_diferencias = obtenerDiferenciasDeIngresosEntreHogares(hogares_con_ingresos);
+    vector<int> todas_las_diferencias = obtenerDiferenciasDeIngresosEntreHogares(hogares_con_ingresos);
     vector<hogar_con_ingresos> subseq_mas_larga;
     for (auto d: todas_las_diferencias) {
         vector<hogar_con_ingresos> s = subseqMasLargaDeHogaresPorDifDeIngresos(hogares_con_ingresos, d);
