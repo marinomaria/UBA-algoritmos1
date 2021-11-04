@@ -91,15 +91,6 @@ void corregirRegion( eph_h & th, eph_i ti ) {
 }
 
 // Implementacion Problema 10
-vector < int > histogramaDeAnillosConcentricos( eph_h th, eph_i ti, pair < int, int > centro, vector < int > distancias ){
-	vector < int > resp = {};
-	
-	// TODO
-	
-	return resp;
-}
-
-// Implementacion Problema 11
 pair < eph_h, eph_i > quitarIndividuos(eph_i & ti, eph_h & th, vector < pair < int, dato > >  busqueda ){
     eph_h rth = {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
     eph_i rti = {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
@@ -109,3 +100,25 @@ pair < eph_h, eph_i > quitarIndividuos(eph_i & ti, eph_h & th, vector < pair < i
 	
 	return resp;
 }
+
+// Implementacion Problema 11
+vector<int> histogramaDeAnillosConcentricos(eph_h th, eph_i ti, pair<int, int> centro, vector<int> distancias){
+    vector<int> res = {};
+
+    for (int i = 0; i < distancias.size(); ++i) {
+        int cont = 0;
+        int dist_desde = i == 0 ? 0 : distancias[i - 1];
+        int dist_hasta = distancias[i];
+
+        for (hogar h: th) {
+            if (hogarEnAnillo(dist_desde, dist_hasta, centro, h)) {
+                cont++;
+            }
+        }
+
+        res.push_back(cont);
+    }
+
+    return res;
+}
+
