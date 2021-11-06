@@ -101,7 +101,7 @@ pair<eph_h, eph_i> quitarIndividuos(eph_i &ti, eph_h &th, vector<pair<int, dato>
 
     for (int i = 0; i < ti0.size(); i++) {
         if (cumpleConBusqueda(ti0[i], busqueda)) {
-            // si no hay un hogar en
+            // si todavía no agregamos el hogar a res
             if (indiceEnTablaHogares(ti0[i][INDCODUSU], res.first) == -1) {
                 res.first.push_back(th[indiceEnTablaHogares(ti0[i][INDCODUSU], th)]);
             }
