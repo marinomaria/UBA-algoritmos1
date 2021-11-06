@@ -33,17 +33,27 @@ vector <int> histHabitacional ( eph_h th, eph_i ti, int region ) {
 }
 
 // Implementacion Problema 3
-vector< pair < int, float > > laCasaEstaQuedandoChica ( eph_h th, eph_i ti ) {
+vector<pair<int, float>> laCasaEstaQuedandoChica (eph_h th, eph_i ti) {
 
-    vector<pair<int,float>> resp = {make_pair(1,-1.0),
-                                        make_pair(40, -1.0),
-                                        make_pair(41, -1.0),
-                                        make_pair(42,-1.0),
-                                        make_pair(43,-1.0),
-                                        make_pair(44,-1.0)};
-	// TODO
-	
-  return resp;
+    vector<pair<int,float>> res = {
+                                    make_pair(1,-1.0),
+                                    make_pair(40, -1.0),
+                                    make_pair(41, -1.0),
+                                    make_pair(42,-1.0),
+                                    make_pair(43,-1.0),
+                                    make_pair(44,-1.0)
+                                };
+
+    for (int i = 0; i < CANTIDAD_DE_REGIONES; i++) {
+        int region = res[i].first;
+        float cantidadCasasTarget = cantCasasTarget(th, region);
+        if (cantidadCasasTarget != 0.0) {
+            res[i].second = cantCasasTargetConHC(th, ti, region) / cantidadCasasTarget;
+        } else {
+            res[i].second = 0.0;
+        }
+    }
+    return res;
 }
 
 // Implementacion Problema 4
