@@ -5,7 +5,8 @@
 
 int cantHabitantes (hogar const &h, eph_i const &ti){
     int habitantes = 0;
-    for (individuo i: ti){
+    for (individuo const &i: ti){
+
         if (i[INDCODUSU] == h[HOGCODUSU]){
             habitantes++;
         }
