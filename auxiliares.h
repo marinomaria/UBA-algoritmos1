@@ -3,6 +3,10 @@
 
 #include "definiciones.h"
 
+vector<individuo> individuosDelHogar(eph_i &ti, hogar &h);
+int ingresosDelHogar(eph_i &ti, hogar &h);
+vector<hogar_con_ingresos> subseqMasLargaDeHogaresPorDifDeIngresos(vector<hogar_con_ingresos> &hci, int d);
+vector<int> obtenerDiferenciasDeIngresosEntreHogares(vector<hogar_con_ingresos> &hogares_con_ingresos);
 int costoTotal(eph_h const &th, eph_i const &ti,int monto);
 bool hogarEnAnillo(int dist_desde, int dist_hasta, pair<int, int> centro, hogar h);
 int indiceEnTablaHogares(int idx, eph_h const &th);

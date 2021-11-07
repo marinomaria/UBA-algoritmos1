@@ -95,13 +95,38 @@ void ordenarRegionYCODUSU (eph_h & th, eph_i & ti) {
 }
 
 // Implementacion Problema 8
-vector < hogar > muestraHomogenea( eph_h & th, eph_i & ti ){
-    hogar h = {};
-    vector < hogar > resp = {h};
+vector <hogar> muestraHomogenea( eph_h &th, eph_i &ti ){
+    vector<hogar_con_ingresos> hogares_con_ingresos;
+    for (hogar h: th) {
+        int ingresos = ingresosDelHogar(ti, h);
 
-    // TODO
+        // ignoro hogares sin ingresos
+        if(ingresos > 0) {
+            hogares_con_ingresos.push_back(make_pair(h, ingresos));
+        }
+    }
 
-    return  resp;
+    // ordeno crecientemente los hogares por ingresos
+    sort(hogares_con_ingresos.begin(), hogares_con_ingresos.end(),
+              [](const pair<hogar, int> &a, const pair<hogar, int> &b) -> bool {
+                  return a.second < b.second;
+              });
+
+    vector<int> todas_las_diferencias = obtenerDiferenciasDeIngresosEntreHogares(hogares_con_ingresos);
+    vector<hogar_con_ingresos> subseq_mas_larga;
+    for (auto d: todas_las_diferencias) {
+        vector<hogar_con_ingresos> s = subseqMasLargaDeHogaresPorDifDeIngresos(hogares_con_ingresos, d);
+        if(s.size() > subseq_mas_larga.size()) {
+            subseq_mas_larga = s;
+        }
+    }
+
+    vector <hogar> res;
+    for (auto &h: subseq_mas_larga) {
+        res.push_back(h.first);
+    }
+
+    return  res;
 }
 
 // Implementacion Problema 9
