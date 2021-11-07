@@ -22,7 +22,7 @@ bool hogarEnAnillo(int dist_desde, int dist_hasta, pair<int, int> centro, hogar 
            distanciaEuclideana(centro.first, centro.second, h[ItemHogar::HOGLATITUD], h[ItemHogar::HOGLONGITUD]) <= dist_hasta;
 }
   
- int indiceEnTablaHogares(int idx, eph_h const &th) {
+int indiceEnTablaHogares(int idx, eph_h const &th) {
     // Linear search
     int res = -1;
     for (int i = 0; i < th.size(); i++) {
@@ -54,15 +54,19 @@ bool cumpleConBusqueda(individuo i, vector<pair<int, dato>> busqueda){
     return true;
 }
 
+int cantidadHogaresConCondiciones(eph_h const &th, eph_i const &ti){
+    int hogares = 0;
+    for (hogar const &h: th){
 
-int cantHabitantes (hogar const &h, eph_i const &ti) {
-    int habitantes = 0;
-    for (individuo i : ti) {
-        if (i[INDCODUSU] == h[HOGCODUSU]) {
-            habitantes++;
+        if(h[II7] == 1 && h[II2] < cantHabitantes(h, ti) - 2){
+            hogares++;
         }
     }
-    return habitantes;
+    return hogares;
+}
+
+int costoTotal(eph_h const &th, eph_i const &ti, int monto){
+    return monto * cantidadHogaresConCondiciones(th,ti);
 }
 
 bool esHogarTarget(hogar const &h, int r) {

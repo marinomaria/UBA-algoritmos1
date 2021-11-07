@@ -3,6 +3,7 @@
 
 #include "definiciones.h"
 
+int costoTotal(eph_h const &th, eph_i const &ti,int monto);
 bool hogarEnAnillo(int dist_desde, int dist_hasta, pair<int, int> centro, hogar h);
 int indiceEnTablaHogares(int idx, eph_h const &th);
 void eliminarHogaresSinIndividuos(eph_i &ti, eph_h &th);
