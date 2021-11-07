@@ -13,7 +13,16 @@ int cantHabitantes (hogar const &h, eph_i const &ti){
     return habitantes;
 }
 
-int indiceEnTablaHogares(int idx, eph_h const &th) {
+float distanciaEuclideana(int lat1, int long1, int lat2, int long2){
+    return sqrt(pow((lat1 - lat2), 2) + pow((long1 - long2), 2));
+}
+
+bool hogarEnAnillo(int dist_desde, int dist_hasta, pair<int, int> centro, hogar h){
+    return dist_desde < distanciaEuclideana(centro.first, centro.second, h[ItemHogar::HOGLATITUD], h[ItemHogar::HOGLONGITUD]) &&
+           distanciaEuclideana(centro.first, centro.second, h[ItemHogar::HOGLATITUD], h[ItemHogar::HOGLONGITUD]) <= dist_hasta;
+}
+  
+ int indiceEnTablaHogares(int idx, eph_h const &th) {
     // Linear search
     int res = -1;
     for (int i = 0; i < th.size(); i++) {

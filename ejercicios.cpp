@@ -142,10 +142,23 @@ pair<eph_h, eph_i> quitarIndividuos(eph_i &ti, eph_h &th, vector<pair<int, dato>
 }
 
 // Implementacion Problema 11
-vector < int > histogramaDeAnillosConcentricos( eph_h th, eph_i ti, pair < int, int > centro, vector < int > distancias ){
-	vector < int > resp = {};
-	
-	// TODO
-	
-	return resp;
+vector<int> histogramaDeAnillosConcentricos(eph_h th, eph_i ti, pair<int, int> centro, vector<int> distancias){
+    vector<int> res = {};
+
+    for (int i = 0; i < distancias.size(); ++i) {
+        int cont = 0;
+        int dist_desde = i == 0 ? 0 : distancias[i - 1];
+        int dist_hasta = distancias[i];
+
+        for (hogar h: th) {
+            if (hogarEnAnillo(dist_desde, dist_hasta, centro, h)) {
+                cont++;
+            }
+        }
+
+        res.push_back(cont);
+    }
+
+    return res;
 }
+
