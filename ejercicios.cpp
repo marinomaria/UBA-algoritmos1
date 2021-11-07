@@ -13,26 +13,47 @@ bool esEncuestaValida ( eph_h th, eph_i ti ) {
 }
 
 // Implementacion Problema 2
-vector < int > histHabitacional ( eph_h th, eph_i ti, int region ) {
-	vector < int > resultado = {-1, -1, -1, -1, -1, -1};
+vector <int> histHabitacional ( eph_h th, eph_i ti, int region ) {
+	vector <int> res;
+
+    for (hogar h: th) {
+        bool es_casa = h[ItemHogar::IV1] == 1;
+        if(es_casa && h[ItemHogar::REGION] == region) {
+            int cant_hab = h[ItemHogar::IV2];
+            if(res.size() < cant_hab) {
+                vector<int> rellenador(cant_hab - res.size(), 0);
+                res.insert(res.end(), rellenador.begin(), rellenador.end());
+            }
+
+            res[cant_hab-1]++;
+        }
+    }
 	
-	// TODO
-	
-	return resultado;
+	return res;
 }
 
 // Implementacion Problema 3
-vector< pair < int, float > > laCasaEstaQuedandoChica ( eph_h th, eph_i ti ) {
+vector<pair<int, float>> laCasaEstaQuedandoChica (eph_h th, eph_i ti) {
 
-    vector<pair<int,float>> resp = {make_pair(1,-1.0),
-                                        make_pair(40, -1.0),
-                                        make_pair(41, -1.0),
-                                        make_pair(42,-1.0),
-                                        make_pair(43,-1.0),
-                                        make_pair(44,-1.0)};
-	// TODO
-	
-  return resp;
+    vector<pair<int,float>> res = {
+                                    make_pair(1,-1.0),
+                                    make_pair(40, -1.0),
+                                    make_pair(41, -1.0),
+                                    make_pair(42,-1.0),
+                                    make_pair(43,-1.0),
+                                    make_pair(44,-1.0)
+                                };
+
+    for (int i = 0; i < CANTIDAD_DE_REGIONES; i++) {
+        int region = res[i].first;
+        float cantidadCasasTarget = cantCasasTarget(th, region);
+        if (cantidadCasasTarget != 0.0) {
+            res[i].second = cantCasasTargetConHC(th, ti, region) / cantidadCasasTarget;
+        } else {
+            res[i].second = 0.0;
+        }
+    }
+    return res;
 }
 
 // Implementacion Problema 4
@@ -57,11 +78,15 @@ int costoSubsidioMejora( eph_h th, eph_i ti, int monto ){
 join_hi generarJoin( eph_h th, eph_i ti ){
     hogar h = {};
     individuo i = {};
-	join_hi resp = {make_pair(h,i)};
-	
-	// TODO
-	
-  return  resp;
+	join_hi join;
+    for (hogar const &h : th){
+        for (individuo const &i : ti){
+            if(h[HOGCODUSU] == i[INDCODUSU]){
+                join.push_back(make_pair(h,i));
+            }
+        }
+    }
+  return  join;
 }
 
 // Implementacion Problema 7
