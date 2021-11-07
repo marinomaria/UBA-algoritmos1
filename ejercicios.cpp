@@ -5,7 +5,7 @@
 using namespace std;
 // Implementacion Problema 1
 bool esEncuestaValida ( eph_h th, eph_i ti ) {
-	bool resp = false;
+	bool resp = true;
 	
 	// TODO
 	
@@ -115,21 +115,36 @@ void corregirRegion( eph_h & th, eph_i ti ) {
 	return;
 }
 
+
 // Implementacion Problema 10
-vector < int > histogramaDeAnillosConcentricos( eph_h th, eph_i ti, pair < int, int > centro, vector < int > distancias ){
-	vector < int > resp = {};
-	
-	// TODO
-	
-	return resp;
+pair<eph_h, eph_i> quitarIndividuos(eph_i &ti, eph_h &th, vector<pair<int, dato>> busqueda){
+    eph_h rth = {};
+    eph_i rti = {};
+    pair<eph_h, eph_i> res = make_pair(rth, rti);
+
+    eph_i ti0 = ti;
+
+    for (int i = 0; i < ti0.size(); i++) {
+        if (cumpleConBusqueda(ti0[i], busqueda)) {
+            // si todavía no agregamos el hogar a res
+            if (indiceEnTablaHogares(ti0[i][INDCODUSU], res.first) == -1) {
+                res.first.push_back(th[indiceEnTablaHogares(ti0[i][INDCODUSU], th)]);
+            }
+
+            res.second.push_back(ti0[i]);
+            ti.erase(ti.begin() + i - res.second.size() + 1);
+        }
+    }
+
+    eliminarHogaresSinIndividuos(ti, th);
+
+    return res;
 }
 
 // Implementacion Problema 11
-pair < eph_h, eph_i > quitarIndividuos(eph_i & ti, eph_h & th, vector < pair < int, dato > >  busqueda ){
-    eph_h rth = {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
-    eph_i rti = {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
-    pair < eph_h, eph_i > resp = make_pair(rth, rti);
-		
+vector < int > histogramaDeAnillosConcentricos( eph_h th, eph_i ti, pair < int, int > centro, vector < int > distancias ){
+	vector < int > resp = {};
+	
 	// TODO
 	
 	return resp;
