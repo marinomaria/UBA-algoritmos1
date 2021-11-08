@@ -167,16 +167,6 @@ float cantCasasTarget(eph_h const &th, int r) {
     return total;
 }
 
-int buscarEntero(vector<int> &arr, int x) {
-    for (int i = 0; i < arr.size(); ++i) {
-        if(arr[i] == x) {
-            return i;
-        }
-    }
-
-    return -1;
-}
-
 // Auxiliares Problema 5
 
 int cantidadHogaresConCondiciones(eph_h const &th, eph_i const &ti){
@@ -216,6 +206,16 @@ int ingresosDelHogar(eph_i &ti, hogar &h) {
     }
 
     return ingresos;
+}
+
+int buscarEntero(vector<int> &arr, int x) {
+    for (int i = 0; i < arr.size(); ++i) {
+        if(arr[i] == x) {
+            return i;
+        }
+    }
+
+    return -1;
 }
 
 vector<int> obtenerDiferenciasDeIngresosEntreHogares(vector<hogar_con_ingresos> &hogares_con_ingresos) {
