@@ -95,7 +95,7 @@ vector<int> obtenerDiferenciasDeIngresosEntreHogares(vector<hogar_con_ingresos> 
     return todas_las_diferencias;
 }
 
-int cantHabitantes (hogar const &h, eph_i const &ti){
+int cantHabitantes(hogar const &h, eph_i const &ti){
     int habitantes = 0;
     for (individuo i: ti){
         if (i[INDCODUSU] == h[HOGCODUSU]){
