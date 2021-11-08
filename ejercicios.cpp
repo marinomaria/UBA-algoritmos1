@@ -18,7 +18,7 @@ bool esEncuestaValida (eph_h th, eph_i ti) {
 }
 
 //Implementacion Problema 2
-vector <int> histHabitacional ( eph_h th, eph_i ti, int region ) { // NOLINT(performance-unnecessary-value-param)
+vector <int> histHabitacional ( eph_h th, eph_i ti, int region ) {
 	vector <int> res;
 
     for (hogar h: th) {
@@ -38,7 +38,7 @@ vector <int> histHabitacional ( eph_h th, eph_i ti, int region ) { // NOLINT(per
 }
 
 // Implementacion Problema 3
-vector<pair<int, float>> laCasaEstaQuedandoChica (eph_h th, eph_i ti) { // NOLINT(performance-unnecessary-value-param)
+vector<pair<int, float>> laCasaEstaQuedandoChica (eph_h th, eph_i ti) {
 
     vector<pair<int,float>> res = {
                                     make_pair(1,-1.0),
@@ -71,13 +71,13 @@ bool creceElTeleworkingEnCiudadesGrandes ( eph_h t1h, eph_i t1i, eph_h t2h, eph_
 }
 
 // Implementacion Problema 5
-int costoSubsidioMejora( eph_h th, eph_i ti, int monto ){ // NOLINT(performance-unnecessary-value-param)
+int costoSubsidioMejora( eph_h th, eph_i ti, int monto ){
 
   return  costoTotal(th, ti, monto);
 }
 
 // Implementacion Problema 6
-join_hi generarJoin( eph_h th, eph_i ti ){ // NOLINT(performance-unnecessary-value-param)
+join_hi generarJoin( eph_h th, eph_i ti ){
 	join_hi join;
     for (hogar const &h : th){
         for (individuo const &i : ti){
