@@ -3,13 +3,15 @@
 #include "gtest/gtest.h"
 #include "ejercicios.h"
 
-bool esHogarTarget(hogar const &h) {
+// Auxiliares Problema 4
+
+bool esHogarValido(hogar const &h) {
     return (0 < h[IV1] && h[IV1] < 3 && h[MAS_500] == 1);
 }
 
-bool viveEnHogarTarget(int hogarID, eph_h const &th) {
+bool viveEnHogarValido(int hogarID, eph_h const &th) {
     for (hogar const &h : th) {
-        if (h[HOGCODUSU] == hogarID && esHogarTarget(h)) {
+        if (h[HOGCODUSU] == hogarID && esHogarValido(h)) {
             return true;
         }
     }
@@ -20,7 +22,7 @@ bool viveEnHogarTarget(int hogarID, eph_h const &th) {
 float cantTrabajadores(eph_h const &th, eph_i const &ti) {
     float cantTrabajadores = 0;
     for (individuo const &i : ti) {
-        if (i[ESTADO] == OCUPADO && viveEnHogarTarget(i[INDCODUSU], th)) {
+        if (i[ESTADO] == OCUPADO && viveEnHogarValido(i[INDCODUSU], th)) {
             cantTrabajadores++;
         }
     }
@@ -29,7 +31,7 @@ float cantTrabajadores(eph_h const &th, eph_i const &ti) {
 
 bool viveEnHogarTargetConOficina(int hogarID, eph_h const &th) {
     for (hogar const &h : th) {
-        if (h[HOGCODUSU] == hogarID && esHogarTarget(h) && h[II3] == 1) {
+        if (h[HOGCODUSU] == hogarID && esHogarValido(h) && h[II3] == 1) {
             return true;
         }
     }
