@@ -4,143 +4,27 @@
 
 using namespace std;
 
-bool hayIndividuosSinHogares(eph_h const &th, eph_i const &ti) {
-    for (individuo const &i : ti) {
-        if (indiceEnTablaHogares(i[INDCODUSU], th) == -1) {
-            return true;
-        }
-    }
-    return false;
-}
-
-bool mismoAñoYTrimestre(eph_h const &th, eph_i const &ti) {
-    dato año = th[0][HOGANIO];
-    dato trimestre = th[0][HOGTRIMESTRE];
-
-    for (hogar const &h : th) {
-        if (h[HOGANIO] != año || h[HOGTRIMESTRE] != trimestre) {
-            return false;
-        }
-    }
-
-    for (individuo const &i : ti) {
-        if (i[INDANIO] != año || i[INDTRIMESTRE] != trimestre) {
-            return false;
-        }
-    }
-
-    return true;
-}
 
 // Implementacion Problema 1
 bool esEncuestaValida (eph_h th, eph_i ti) {
-
 	return esMatrizNoVacia(th) && esMatrizNoVacia(ti) &&
             th[0].size() == COLUMNAS_HOGAR && ti[0].size() == COLUMNAS_INDIVIDUO &&
-            habitantesCorrectos(th, ti) && !hayIndividuosSinHogares(th, ti) &&
+            habitantesCorrectos(th, ti) &&
+            !hayIndividuosSinHogares(th, ti) &&
             !hayIndRepetidos(ti) && !hayHogaresRepetidos(th) &&
             mismoAñoYTrimestre(th, ti) &&
             cantidadValidaDormitorios(th) &&
-            estanEnRangoHogares(th) && estanEnRangoIndividuos(ti)
-            ;
+            estanEnRangoHogares(th) && estanEnRangoIndividuos(ti);
 }
-
-bool esMatrizNoVacia(vector<vector<dato>> m) {
-    bool res = true;
-    for (int i = 0; i < m.size(); ++i) {
-        for (int j = 0; j < m.size(); ++j) {
-            if(m[i].size() == 0 || m[i].size() != m[j].size()) {
-                res = false;
-            }
-        }
-    }
-    return m.size() != 0 && res;
-}
-
-bool mimsoCodusuYComponente(individuo i1, individuo i2) {
-    return i1[ItemInd::INDCODUSU] == i2[ItemInd::INDCODUSU] && i1[ItemInd::COMPONENTE] == i2[ItemInd::COMPONENTE];
-}
-
-bool hayIndRepetidos(eph_i const &ti) {
-    for (int i = 0; i < ti.size(); ++i) {
-        for (int j = i+1; j < ti.size(); ++j) {
-            if(mimsoCodusuYComponente(ti[i], ti[j])){
-                return true;
-            }
-        }
-    }
-
-    return false;
-}
-
-bool hayHogaresRepetidos(eph_h const &th) {
-    for (int i = 0; i < th.size(); ++i) {
-        for (int j = i+1; j < th.size(); ++j) {
-            if(th[i][ItemHogar::HOGCODUSU] == th[j][ItemHogar::HOGCODUSU]){
-                return true;
-            }
-        }
-    }
-
-    return false;
-}
-
-bool habitantesCorrectos(eph_h const &th, eph_i const &ti){
-    for (hogar const &h : th){
-        if (cantHabitantes(h, ti) == 0 || cantHabitantes(h, ti) > 21) {
-            return false;
-        }
-    }
-    return true;
-}
-
-bool cantidadValidaDormitorios(eph_h const &th) {
-    for (hogar const &h: th) {
-        if(h[ItemHogar::IV2] < h[ItemHogar::II2]) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-bool enRango(int n, int min, int max) {
-    return (min < n && n < max);
-}
-
-bool estanEnRangoHogares(eph_h const &th){
-    for (hogar const &h : th) {
-        if (h[HOGCODUSU] < 0 || !enRango(h[HOGTRIMESTRE], 0, 5) || !enRango(h[II7], 0, 4) ||
-            (h[REGION] != 1 && !enRango(h[REGION], 39, 45)) || !enRango(h[MAS_500], -1, 2) ||
-            !enRango(h[IV1],0,6) || h[IV2] < 0 || h[II2] < 1 || !enRango(h[II3], 0, 3)) {
-            return false;
-        }
-    }
-    return true;
-}
-
-bool estanEnRangoIndividuos(eph_i const &ti){
-    for (individuo const &i : ti) {
-        if (i[INDCODUSU] < 0 || i[COMPONENTE] < 0 || !enRango(i[INDTRIMESTRE], 0, 5) ||
-            !enRango(i[CH4], 0, 3) || i[CH6] < 0 || !enRango(i[ESTADO], -2, 2) ||
-            !enRango(i[CAT_OCUP], -1, 5) || !enRango(i[PP04G], -1, 11) || i[p47T] < -1 ||
-            !enRango(i[NIVEL_ED], -1, 2)) {
-            return false;
-        }
-    }
-    return true;
-}
-
-
 
 //Implementacion Problema 2
 vector <int> histHabitacional ( eph_h th, eph_i ti, int region ) {
 	vector <int> res;
 
     for (hogar h: th) {
-        bool es_casa = h[ItemHogar::IV1] == 1;
-        if(es_casa && h[ItemHogar::REGION] == region) {
-            int cant_hab = h[ItemHogar::IV2];
+        bool es_casa = h[IV1] == 1;
+        if(es_casa && h[REGION] == region) {
+            int cant_hab = h[IV2];
             if(res.size() < cant_hab) {
                 vector<int> rellenador(cant_hab - res.size(), 0);
                 res.insert(res.end(), rellenador.begin(), rellenador.end());
@@ -251,7 +135,7 @@ vector <hogar> muestraHomogenea( eph_h &th, eph_i &ti ){
 }
 
 // Implementacion Problema 9
-void corregirRegion(eph_h & th, eph_i ti) {
+void corregirRegion(eph_h &th, eph_i ti) {
     for (hogar &h : th) {
         if (h[REGION] == GBA) {
             h[REGION] = PAMPEANA;
