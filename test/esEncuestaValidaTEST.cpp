@@ -157,7 +157,7 @@ TEST(esEncuestaValidaTEST, invalidaDormitoriosMayoresAHabitaciones) {
 
 TEST(esEncuestaValidaTEST, validaMenosOIgualA20MiembrosEnElHogar) {
     eph_h th = {{22114, 2020,   3,  319611, 629088, 3,  41, 0,  1,  3,  1,  2}};
-    eph_i ti;
+    eph_i ti = {};
 
     for (int i = 1; i <= 20; i++) {
         individuo individuo_actual = {22114, 2020,   1,  0,  3,  1,  18, 0,  0,  20000,  10};
@@ -189,6 +189,32 @@ TEST(esEncuestaValidaTEST, validaAnioNegativo) {
     eph_h th = {{22114, -2020,   3,  319611, 629088, 3,  41, 0,  1,  3,  1,  2}};
     eph_i ti = {{22114, -2020,   1,  0,  3,  1,  18, 0,  0,  20000,  10}};
     EXPECT_TRUE(esEncuestaValida(th, ti));
+}
+
+TEST(esEncuestaValidaTEST, habitantesIncorrectos) {
+    eph_h th = {{22114, 2020,   3,  319611, 629088, 3,  41, 0,  1,  3,  1,  2}};
+    eph_i ti = {};
+
+    for (int i = 1; i <= 22; i++) {
+        individuo individuo_actual = {22114, 2020,   1,  0,  3,  1,  18, 0,  0,  20000,  10};
+        individuo_actual[COMPONENTE] = i;
+        ti.push_back(individuo_actual);
+    }
+
+    EXPECT_FALSE(esEncuestaValida(th, ti));
+
+}
+
+TEST(esEncuestaValidaTEST, cantidadInvalidaDeDormitorios) {
+    eph_h th = {{22114, 2020,   3,  319611, 629088, 3,  41, 0,  1,  1,  3,  2}};
+    eph_i ti = {{22114, 2020,   1,  0,  3,  1,  18, 0,  0,  20000,  10}};
+    EXPECT_FALSE(esEncuestaValida(th, ti));
+}
+
+TEST(esEncuestaValidaTEST, columnaDeIndividuoFueraDeRango) {
+    eph_h th = {{22114, 2020,   3,  319611, 629088, 3,  41, 0,  1,  3,  1,  2}};
+    eph_i ti = {{22114, 2020,   1,  0,  3,  1,  18, 0,  0,  -2,  10}};
+    EXPECT_FALSE(esEncuestaValida(th, ti));
 }
 
 TEST(histHabitacionalTEST, validaeph2018_100) {

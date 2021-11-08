@@ -3,23 +3,28 @@
 #include "definiciones.h"
 
 using namespace std;
+
+
 // Implementacion Problema 1
-bool esEncuestaValida ( eph_h th, eph_i ti ) {
-	bool resp = true;
-	
-	// TODO
-	
-	return resp;
+bool esEncuestaValida (eph_h th, eph_i ti) {
+	return esMatrizNoVacia(th) && esMatrizNoVacia(ti) &&
+            th[0].size() == COLUMNAS_HOGAR && ti[0].size() == COLUMNAS_INDIVIDUO &&
+            habitantesCorrectos(th, ti) &&
+            !hayIndividuosSinHogares(th, ti) &&
+            !hayIndRepetidos(ti) && !hayHogaresRepetidos(th) &&
+            mismoAñoYTrimestre(th, ti) &&
+            cantidadValidaDormitorios(th) &&
+            estanEnRangoHogares(th) && estanEnRangoIndividuos(ti);
 }
 
-// Implementacion Problema 2
+//Implementacion Problema 2
 vector <int> histHabitacional ( eph_h th, eph_i ti, int region ) {
 	vector <int> res;
 
     for (hogar h: th) {
-        bool es_casa = h[ItemHogar::IV1] == 1;
-        if(es_casa && h[ItemHogar::REGION] == region) {
-            int cant_hab = h[ItemHogar::IV2];
+        bool es_casa = h[IV1] == 1;
+        if(es_casa && h[REGION] == region) {
+            int cant_hab = h[IV2];
             if(res.size() < cant_hab) {
                 vector<int> rellenador(cant_hab - res.size(), 0);
                 res.insert(res.end(), rellenador.begin(), rellenador.end());
@@ -130,7 +135,7 @@ vector <hogar> muestraHomogenea( eph_h &th, eph_i &ti ){
 }
 
 // Implementacion Problema 9
-void corregirRegion(eph_h & th, eph_i ti) {
+void corregirRegion(eph_h &th, eph_i ti) {
     for (hogar &h : th) {
         if (h[REGION] == GBA) {
             h[REGION] = PAMPEANA;

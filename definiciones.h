@@ -9,7 +9,7 @@
 #include <vector>
 #include <tuple>
 #include <algorithm>
-#include <bits/stdc++.h>
+//#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -30,7 +30,7 @@ enum ItemHogar {
   II3           // ¿Alguna se usa para trabajar?
 };
 
-#define FILAS_HOGAR 12
+#define COLUMNAS_HOGAR 12
 
 enum ItemInd {
   INDCODUSU,    // CODUSU
@@ -46,7 +46,7 @@ enum ItemInd {
   PP04G         // Ubicación laboral (Oficina, Calle, Hogar, etc.)
 };
 
-#define FILAS_INDIVIDUO 11
+#define COLUMNAS_INDIVIDUO 11
 
 #define GBA 1
 #define PAMPEANA 43
