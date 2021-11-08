@@ -62,12 +62,9 @@ vector<pair<int, float>> laCasaEstaQuedandoChica (eph_h th, eph_i ti) {
 }
 
 // Implementacion Problema 4
-bool creceElTeleworkingEnCiudadesGrandes ( eph_h t1h, eph_i t1i, eph_h t2h, eph_i t2i ) {
-	bool resp = false;
-	
-	// TODO
-	
-  return  resp;
+bool creceElTeleworkingEnCiudadesGrandes (eph_h t1h, eph_i t1i, eph_h t2h, eph_i t2i) {
+//    Puedo asumir que son encuestas válidas, t1 es anterior a t2 y que son del mismo trimestre
+    return propTeleworking(t2h, t2i) > propTeleworking(t1h, t1i);
 }
 
 // Implementacion Problema 5

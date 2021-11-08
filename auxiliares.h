@@ -16,6 +16,8 @@ bool estanEnRangoIndividuos(eph_i const &ti);
 float cantCasasTarget(eph_h const &th, int r);
 float cantCasasTargetConHC(eph_h const &th, eph_i const &ti, int r);
 
+float propTeleworking(eph_h const &th, eph_i const &ti);
+
 int costoTotal(eph_h const &th, eph_i const &ti,int monto);
 
 int ingresosDelHogar(eph_i &ti, hogar &h);
