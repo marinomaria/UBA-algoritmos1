@@ -8,6 +8,8 @@
 #include <iostream>
 #include <vector>
 #include <tuple>
+#include <algorithm>
+//#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -28,7 +30,7 @@ enum ItemHogar {
   II3           // ¿Alguna se usa para trabajar?
 };
 
-#define FILAS_HOGAR 12
+#define COLUMNAS_HOGAR 12
 
 enum ItemInd {
   INDCODUSU,    // CODUSU
@@ -44,10 +46,10 @@ enum ItemInd {
   PP04G         // Ubicación laboral (Oficina, Calle, Hogar, etc.)
 };
 
-#define FILAS_INDIVIDUO 11
+#define COLUMNAS_INDIVIDUO 11
 
 #define GBA 1
-#define PAMPEANA 5
+#define PAMPEANA 43
 #define CANTIDAD_DE_REGIONES 6
 
 #define CASA 1
@@ -64,5 +66,7 @@ typedef vector < individuo >        eph_i;
 typedef vector < hogar >            eph_h;
 typedef pair < hogar, individuo >   par_hi;
 typedef vector < par_hi >           join_hi;
+typedef int                         ingresos;
+typedef pair<hogar, ingresos>       hogar_con_ingresos;
 
 #endif //UTILES_DEFINICIONES_H
