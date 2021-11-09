@@ -5,14 +5,19 @@
 
 // Auxiliares Generales
 
-int cantHabitantes(hogar const &h, eph_i const &ti){
-    int habitantes = 0;
-    for (individuo i: ti){
-        if (i[INDCODUSU] == h[HOGCODUSU]){
-            habitantes++;
+vector<individuo> individuosDelHogar(eph_i const &ti, hogar const &h) {
+    vector<individuo> res;
+    for (individuo i: ti) {
+        if(i[INDCODUSU] == h[HOGCODUSU]) {
+            res.push_back(i);
         }
     }
-    return habitantes;
+
+    return res;
+}
+
+int cantHabitantes(hogar const &h, eph_i const &ti){
+    return individuosDelHogar(ti, h).size();
 }
 
 int indiceEnTablaHogares(int idx, eph_h const &th) {
@@ -272,18 +277,6 @@ void ordenarTablaIndividuos(eph_i &ti, eph_h &th) {
 }
 
 // Auxiliares Problema 8
-
-vector<individuo> individuosDelHogar(eph_i &ti, hogar &h) {
-    vector<individuo> res;
-    for (individuo i: ti) {
-        if(i[INDCODUSU] == h[HOGCODUSU]) {
-            res.push_back(i);
-        }
-    }
-
-    return res;
-}
-
 int ingresosDelHogar(eph_i &ti, hogar &h) {
     int ingresos = 0;
     vector<individuo> inds = individuosDelHogar(ti, h);
