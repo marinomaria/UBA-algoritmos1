@@ -85,18 +85,18 @@ bool hayHogaresRepetidos(eph_h const &th) {
     return false;
 }
 
-bool mismoAñoYTrimestre(eph_h const &th, eph_i const &ti) {
-    dato año = th[0][HOGANIO];
+bool mismoAnioYTrimestre(eph_h const &th, eph_i const &ti) {
+    dato anio = th[0][HOGANIO];
     dato trimestre = th[0][HOGTRIMESTRE];
 
     for (hogar const &h : th) {
-        if (h[HOGANIO] != año || h[HOGTRIMESTRE] != trimestre) {
+        if (h[HOGANIO] != anio || h[HOGTRIMESTRE] != trimestre) {
             return false;
         }
     }
 
     for (individuo const &i : ti) {
-        if (i[INDANIO] != año || i[INDTRIMESTRE] != trimestre) {
+        if (i[INDANIO] != anio || i[INDTRIMESTRE] != trimestre) {
             return false;
         }
     }

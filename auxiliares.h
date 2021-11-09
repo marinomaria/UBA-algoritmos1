@@ -8,7 +8,7 @@ bool habitantesCorrectos(eph_h const &th, eph_i const &ti);
 bool hayIndividuosSinHogares(eph_h const &th, eph_i const &ti);
 bool hayIndRepetidos(vector<individuo> const &ti);
 bool hayHogaresRepetidos(eph_h const &th);
-bool mismoAñoYTrimestre(eph_h const &th, eph_i const &ti);
+bool mismoAnioYTrimestre(eph_h const &th, eph_i const &ti);
 bool cantidadValidaDormitorios(eph_h const &th);
 bool estanEnRangoHogares(eph_h const &th);
 bool estanEnRangoIndividuos(eph_i const &ti);

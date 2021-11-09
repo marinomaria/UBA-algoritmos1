@@ -12,7 +12,7 @@ bool esEncuestaValida (eph_h th, eph_i ti) {
             habitantesCorrectos(th, ti) &&
             !hayIndividuosSinHogares(th, ti) &&
             !hayIndRepetidos(ti) && !hayHogaresRepetidos(th) &&
-            mismoAñoYTrimestre(th, ti) &&
+            mismoAnioYTrimestre(th, ti) &&
             cantidadValidaDormitorios(th) &&
             estanEnRangoHogares(th) && estanEnRangoIndividuos(ti);
 }
