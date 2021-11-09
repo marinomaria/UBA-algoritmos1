@@ -365,6 +365,17 @@ vector<hogar_con_ingresos> subseqMasLargaDeHogaresPorDifDeIngresos(vector<hogar_
     return subseq_mas_larga;
 }
 
+void bubbleSortHogaresConIngresos(vector<hogar_con_ingresos> &hogares_con_ingresos){
+    for (int i = 0; i < hogares_con_ingresos.size(); ++i) {
+        for (int j = i+1; j < hogares_con_ingresos.size(); ++j) {
+            if(hogares_con_ingresos[i].second > hogares_con_ingresos[j].second){
+                swap(hogares_con_ingresos[i], hogares_con_ingresos[j]);
+            }
+        }
+    }
+}
+
+
 // Auxiliares Problema 10
 
 bool cumpleConBusqueda(individuo i, vector<pair<int, dato>> busqueda){

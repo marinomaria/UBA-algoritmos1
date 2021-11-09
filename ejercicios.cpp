@@ -107,10 +107,7 @@ vector <hogar> muestraHomogenea( eph_h &th, eph_i &ti ){
     }
 
     // ordeno crecientemente los hogares por ingresos
-    sort(hogares_con_ingresos.begin(), hogares_con_ingresos.end(),
-              [](const pair<hogar, int> &a, const pair<hogar, int> &b) -> bool {
-                  return a.second < b.second;
-              });
+    bubbleSortHogaresConIngresos(hogares_con_ingresos);
 
     vector<int> todas_las_diferencias = obtenerDiferenciasDeIngresosEntreHogares(hogares_con_ingresos);
     vector<hogar_con_ingresos> subseq_mas_larga;
