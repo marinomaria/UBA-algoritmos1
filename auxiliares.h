@@ -20,6 +20,9 @@ float propTeleworking(eph_h const &th, eph_i const &ti);
 
 int costoTotal(eph_h const &th, eph_i const &ti,int monto);
 
+void ordenarTablaHogares(vector<vector<int>> &th);
+void ordenarTablaIndividuos(eph_i &ti, eph_h &th);
+
 int ingresosDelHogar(eph_i &ti, hogar &h);
 vector<int> obtenerDiferenciasDeIngresosEntreHogares(vector<hogar_con_ingresos> &hogares_con_ingresos);
 vector<hogar_con_ingresos> subseqMasLargaDeHogaresPorDifDeIngresos(vector<hogar_con_ingresos> &hci, int d);

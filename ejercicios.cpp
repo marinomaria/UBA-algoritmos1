@@ -87,12 +87,12 @@ join_hi generarJoin( eph_h th, eph_i ti ){
 }
 
 // Implementacion Problema 7
-void ordenarRegionYCODUSU (eph_h & th, eph_i & ti) {
-	
-	// TODO
-	
-	return;
+
+void ordenarRegionYCODUSU (eph_h &th, eph_i &ti) {
+	  ordenarTablaHogares(th);
+    ordenarTablaIndividuos(ti, th);
 }
+
 
 // Implementacion Problema 8
 vector <hogar> muestraHomogenea( eph_h &th, eph_i &ti ){
@@ -184,4 +184,3 @@ vector<int> histogramaDeAnillosConcentricos(eph_h th, eph_i ti, pair<int, int> c
 
     return res;
 }
-

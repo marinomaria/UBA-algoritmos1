@@ -233,6 +233,44 @@ int costoTotal(eph_h const &th, eph_i const &ti, int monto){
     return monto * cantidadHogaresConCondiciones(th,ti);
 }
 
+// Auxiliares Problema 7
+
+void ordenarTablaHogares(vector<vector<int>> &th) {
+    // Bubble sort
+    for (int i = 0; i < th.size(); i++) {
+        for (int j = th.size() - 1; j > i; j--) {
+            if (
+                    th[j][REGION] < th[j - 1][REGION] ||
+                    (
+                            th[j][REGION] == th[j - 1][REGION] &&
+                            th[j][HOGCODUSU] < th[j - 1][HOGCODUSU]
+                    )
+                    )
+            {
+                swap(th[j], th[j - 1]);
+            }
+        }
+    }
+}
+
+void ordenarTablaIndividuos(eph_i &ti, eph_h &th) {
+    // Bubble sort
+    for (int i = 0; i < ti.size(); i++) {
+        for (int j = ti.size() - 1; j > i; j--) {
+            if (
+                    indiceEnTablaHogares(ti[j][INDCODUSU], th) < indiceEnTablaHogares(ti[j - 1][INDCODUSU], th) ||
+                    (
+                            indiceEnTablaHogares(ti[j][INDCODUSU], th) == indiceEnTablaHogares(ti[j - 1][INDCODUSU], th) &&
+                            ti[j][COMPONENTE] < ti[j - 1][COMPONENTE]
+                    )
+                )
+            {
+                swap(ti[j], ti[j - 1]);
+            }
+        }
+    }
+}
+
 // Auxiliares Problema 8
 
 vector<individuo> individuosDelHogar(eph_i &ti, hogar &h) {
