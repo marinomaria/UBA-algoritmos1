@@ -137,7 +137,7 @@ void corregirRegion(eph_h &th, eph_i ti) {
 
 
 // Implementacion Problema 10
-pair<eph_h, eph_i> quitarIndividuos(eph_i &ti, eph_h &th, vector<pair<int, dato>> const &busqueda){
+pair<eph_h, eph_i> quitarIndividuos(eph_i &ti, eph_h &th, vector<pair<int, dato>> busqueda){
     eph_h rth = {};
     eph_i rti = {};
     pair<eph_h, eph_i> res = make_pair(rth, rti);
