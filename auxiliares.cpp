@@ -302,8 +302,8 @@ vector<int> obtenerDiferenciasDeIngresosEntreHogares(vector<hogar_con_ingresos> 
     vector<int> todas_las_diferencias;
 
     // para cada hogar calculo la diferencia de ingresos con los otros hogares
-    for (hogar_con_ingresos p1: hogares_con_ingresos) {
-        for (hogar_con_ingresos p2: hogares_con_ingresos) {
+    for (hogar_con_ingresos const &p1: hogares_con_ingresos) {
+        for (hogar_con_ingresos const &p2: hogares_con_ingresos) {
             int diff = abs(p1.second - p2.second);
             if(todas_las_diferencias.size() == 0 || buscarEntero(todas_las_diferencias, diff) == -1) {
                 todas_las_diferencias.push_back(diff);
@@ -329,9 +329,9 @@ vector<hogar_con_ingresos> subseqMasLargaDeHogaresPorDifDeIngresos(vector<hogar_
     pair<int, vector<hogar_con_ingresos>> tupla_inexistente = make_pair(-1, vector<hogar_con_ingresos>{});
 
     vector<hogar_con_ingresos> subseq_mas_larga;
-    for (int i = 0; i < hci.size() ; i++) {
+    for (hogar_con_ingresos &i : hci) {
         // diferencia entre los ingresos del hogar y la diferencia recibida d
-        int diff = hci[i].second - d;
+        int diff = i.second - d;
 
         int tupla_diff_idx = buscarTuplaPorPrimerElemento(m, diff);
         pair<int, vector<hogar_con_ingresos>> tupla_diff = tupla_diff_idx != -1 ? m[tupla_diff_idx] : tupla_inexistente;
@@ -341,15 +341,15 @@ vector<hogar_con_ingresos> subseqMasLargaDeHogaresPorDifDeIngresos(vector<hogar_
             // agrego una tupla con el valor del ingreso del hogar como su primer elemento
             // y como segundo elemento los hogares con ingresos de tupla_diff + el hogar con ingreso actual
             vector<hogar_con_ingresos> c = tupla_diff.second;
-            c.push_back(hci[i]);
-            m.push_back(make_pair(hci[i].second, c));
+            c.push_back(i);
+            m.push_back(make_pair(i.second, c));
         } else {
             // agrego una tupla con el valor del ingreso del hogar como su primer elemento
             // y como segundo elemento el hogar con ingreso actual
-            m.push_back(make_pair(hci[i].second, vector<hogar_con_ingresos> {hci[i]}));
+            m.push_back(make_pair(i.second, vector<hogar_con_ingresos> {i}));
         }
 
-        pair<int, vector<hogar_con_ingresos>> tupla_actual = m[buscarTuplaPorPrimerElemento(m, hci[i].second)];
+        pair<int, vector<hogar_con_ingresos>> tupla_actual = m[buscarTuplaPorPrimerElemento(m, i.second)];
         if(subseq_mas_larga.size() < tupla_actual.second.size()) {
             subseq_mas_larga = tupla_actual.second;
         }
@@ -371,8 +371,8 @@ void bubbleSortHogaresConIngresos(vector<hogar_con_ingresos> &hogares_con_ingres
 
 // Auxiliares Problema 10
 
-bool cumpleConBusqueda(individuo i, vector<pair<int, dato>> busqueda){
-    for (pair<int, dato> &b: busqueda) {
+bool cumpleConBusqueda(individuo i, vector<pair<int, dato>> const &busqueda){
+    for (pair<int, dato> const &b: busqueda) {
         if(i[b.first] != b.second) {
             return false;
         }
