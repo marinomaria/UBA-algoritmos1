@@ -28,7 +28,7 @@ vector<int> obtenerDiferenciasDeIngresosEntreHogares(vector<hogar_con_ingresos> 
 vector<hogar_con_ingresos> subseqMasLargaDeHogaresPorDifDeIngresos(vector<hogar_con_ingresos> &hci, int d);
 void bubbleSortHogaresConIngresos(vector<hogar_con_ingresos> &hogares_con_ingresos);
 
-bool cumpleConBusqueda(individuo i, vector<pair<int, dato>> busqueda);
+bool cumpleConBusqueda(individuo i, vector<pair<int, dato>> const &busqueda);
 int indiceEnTablaHogares(int idx, eph_h const &th);
 void eliminarHogaresSinIndividuos(eph_i &ti, eph_h &th);
 

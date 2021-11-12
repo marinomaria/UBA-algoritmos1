@@ -18,7 +18,7 @@ bool esEncuestaValida (eph_h th, eph_i ti) {
 }
 
 //Implementacion Problema 2
-vector <int> histHabitacional ( eph_h th, eph_i ti, int region ) {
+vector <int> histHabitacional (eph_h th, eph_i ti, int region) {
 	vector <int> res;
 
     for (hogar h: th) {
@@ -170,7 +170,7 @@ vector<int> histogramaDeAnillosConcentricos(eph_h th, eph_i ti, pair<int, int> c
         int dist_desde = i == 0 ? 0 : distancias[i - 1];
         int dist_hasta = distancias[i];
 
-        for (hogar h: th) {
+        for (hogar const &h: th) {
             if (hogarEnAnillo(dist_desde, dist_hasta, centro, h)) {
                 cont++;
             }
