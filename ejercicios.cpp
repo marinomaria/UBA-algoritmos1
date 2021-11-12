@@ -22,15 +22,16 @@ vector <int> histHabitacional (eph_h th, eph_i ti, int region) {
 	vector <int> res;
 
     for (hogar h: th) {
-        bool es_casa = h[IV1] == 1;
-        if(es_casa && h[REGION] == region) {
+        if(h[REGION] == region) {
             int cant_hab = h[IV2];
             if(res.size() < cant_hab) {
                 vector<int> rellenador(cant_hab - res.size(), 0);
                 res.insert(res.end(), rellenador.begin(), rellenador.end());
             }
 
-            res[cant_hab-1]++;
+            if(h[IV1] == 1) {
+                res[cant_hab - 1]++;
+            }
         }
     }
 	
